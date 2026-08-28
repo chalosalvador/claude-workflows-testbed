@@ -1,0 +1,12 @@
+[project]
+name = "tasklet"
+version = "0.1.0"
+description = "A tiny task tracker, used as a testbed."
+requires-python = ">=3.11"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.ruff]
+line-length = 100
