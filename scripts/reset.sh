@@ -28,10 +28,14 @@ done
 say "2. Revert the tracked fixture back to its broken state"
 # Issue #3 is only reproducible while the README disagrees with ci.yml.
 if grep -q 'ruff pytest &&' README.md 2>/dev/null; then
-  $DRY sed -i.bak 's|^pip install -e \. ruff pytest &&.*|pip install -e . \&\& pytest tests/ -q|' README.md
-  $DRY rm -f README.bak
-  $DRY sed -i.bak '/^Run the same gate CI runs:$/,+1d' README.md
-  $DRY rm -f README.bak
+  # NB: no `sed -i.bak`. On BOTH BSD and GNU sed, `sed -i.bak README.md` writes
+  # README.md.bak — not README.bak — so the obvious cleanup silently misses it and
+  # this script (which pushes straight to main) commits the stray file. That
+  # happened: README.md.bak was tracked on main until it was removed by hand.
+  # A temp file is portable and leaves nothing behind.
+  _edit() { local t; t=$(mktemp); sed "$1" README.md > "$t" && mv "$t" README.md; }
+  $DRY _edit 's|^pip install -e \. ruff pytest &&.*|pip install -e . \&\& pytest tests/ -q|'
+  $DRY _edit '/^Run the same gate CI runs:$/,+1d'
   $DRY git commit -qam "chore: reset README fixture to its pre-fix state"
   $DRY git push -q origin main
 else
