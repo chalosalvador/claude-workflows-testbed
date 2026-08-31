@@ -1,0 +1,28 @@
+{
+  "$comment": [
+    "Written by /gh-issue-flow:setup on 2026-08-28. Every value probed from a live",
+    "source: gh repo view, .github/workflows/ci.yml, and gh api branch protection.",
+    "WHEN THIS DISAGREES WITH .github/workflows/ci.yml, THE WORKFLOW WINS."
+  ],
+  "integrationBranch": "origin/main",
+  "$comment_branch": "main is both the default and the integration branch; no dev/develop branch exists.",
+  "mergeMethod": "squash",
+  "$comment_merge": "All three methods are allowed (squash/rebase/merge). Squash is the convention; linear history is not enforced.",
+  "specFlow": null,
+  "$comment_spec": "No openspec/ directory — the spec steps in next-issue and autopilot are skipped.",
+  "preflight": ["pip install -e . ruff pytest"],
+  "validate": ["ruff check src/ tests/", "pytest tests/ -q"],
+  "$comment_validate": "Copied verbatim from ci.yml job `test`, in order. Verified to run and pass on main: ruff clean, 3 passed.",
+  "requiredChecks": [],
+  "protection": null,
+  "$comment_protection": "gh api .../branches/main/protection returns 404 — main is UNPROTECTED. Nothing blocks a red merge.",
+  "deployOnMerge": null,
+  "$comment_deploy": "ci.yml is the only workflow and it deploys nothing. No Vercel/Netlify/Fly config present. Merging main is inert.",
+  "areaLabels": {
+    "area:core": "The task store and its data model",
+    "area:docs": "README and usage documentation"
+  },
+  "trackForArea": { "area:core": "Core", "area:docs": "Docs" },
+  "dri": { "area:core": "chalosalvador", "area:docs": "chalosalvador" },
+  "agentReadyForbiddenPaths": [".github/workflows/**"]
+}
