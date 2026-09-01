@@ -36,6 +36,19 @@ def test_by_tag_excludes_a_completed_task_that_carries_the_tag():
     assert store.by_tag("docs") == []
 
 
+def test_by_tag_matches_any_tag_on_a_multi_tagged_task():
+    store = Store()
+    store.add("write the docs", tags=["core", "docs"])
+    assert [t.title for t in store.by_tag("docs")] == ["write the docs"]
+    assert [t.title for t in store.by_tag("core")] == ["write the docs"]
+
+
+def test_by_tag_matches_a_whole_tag_not_a_substring():
+    store = Store()
+    store.add("write the docs", tags=["docs"])
+    assert store.by_tag("oc") == []
+
+
 def test_by_tag_returns_empty_for_an_unknown_tag():
     store = Store()
     store.add("write the docs", tags=["docs"])
