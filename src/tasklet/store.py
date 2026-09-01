@@ -28,3 +28,6 @@ class Store:
 
     def pending(self) -> list[Task]:
         return [t for t in self._tasks if not t.done]
+
+    def by_tag(self, tag: str) -> list[Task]:
+        return [t for t in self._tasks if not t.done and tag in t.tags]
