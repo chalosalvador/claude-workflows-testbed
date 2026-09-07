@@ -2,8 +2,10 @@
 
 A tiny task tracker. This repo exists to exercise the `gh-issue-flow` Claude Code plugin end to end.
 
+Run the same gate CI runs:
+
 ```bash
-pip install -e . && pytest tests/ -q
+pip install -e . ruff pytest && ruff check src/ tests/ && pytest tests/ -q
 ```
 
 ---
@@ -16,8 +18,9 @@ feature, a docs fix, an open product question, a migration, and one more feature
 that `triage` has something to actually judge and its `agent-ready` gate has to reject
 some of them.
 
-**The README command above is deliberately wrong** (issue #3): it installs neither `ruff`
-nor `pytest`, so a fresh clone cannot run the gate as documented. That is the fixture.
+**The install line above is the fixture for issue #3.** `scripts/reset.sh` puts it back to
+`pip install -e . && pytest tests/ -q`, which installs neither `ruff` nor `pytest`, so a
+fresh clone cannot run the gate as documented until #3 is fixed again.
 
 To run the plugin against it again from a clean slate:
 
