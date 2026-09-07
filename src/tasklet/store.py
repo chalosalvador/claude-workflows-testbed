@@ -26,5 +26,12 @@ class Store:
                 return True
         return False
 
+    def remove(self, title: str) -> bool:
+        for task in self._tasks:
+            if task.title == title:
+                self._tasks.remove(task)
+                return True
+        return False
+
     def pending(self) -> list[Task]:
         return [t for t in self._tasks if not t.done]
