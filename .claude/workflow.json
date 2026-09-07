@@ -1,4 +1,14 @@
 {
+  "schemaVersion": 3,
+  "$comment_schemaVersion": "Written by /gh-issue-flow:setup upgrade on 2026-09-07, plugin 0.8.0. Was schema 0.",
+  "board": { "number": 1, "owner": "chalosalvador" },
+  "$comment_board": "Asked on 2026-09-07 (plugin 0.8.0 upgrade): this repo feeds Project 1 'Tasklet' owned by chalosalvador. Overrides the machine default, which was empty.",
+  "repos": ["chalosalvador/claude-workflows-testbed"],
+  "$comment_repos": "Asked on 2026-09-07: no other repo feeds board 1. Written so the multi-repo skills never guess.",
+  "stacks": [],
+  "$comment_stacks": "Probed 2026-09-07 by setup § 5b: no deploy evidence — ci.yml only, no host config file, no infra dir. Deliberately none; add a name here when a stack doc is generated.",
+  "priorityCaps": { "legal": "P1" },
+  "$comment_priorityCaps": "Default written by plugin 0.8.0 upgrade: legal/policy/contractual items cap at P1 (triage § 3c). Set {} to turn caps off.",
   "$comment": [
     "Written by /gh-issue-flow:setup on 2026-08-28. Every value probed from a live",
     "source: gh repo view, .github/workflows/ci.yml, and gh api branch protection.",
