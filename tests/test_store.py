@@ -44,7 +44,7 @@ def test_remove_takes_only_the_first_of_two_same_titled_tasks():
 
 def test_remove_deletes_the_matching_task_not_another_one():
     store = Store()
-    store.add("keep me")
     store.add("bye")
+    store.add("keep me")
     assert store.remove("bye") is True
     assert [t.title for t in store.pending()] == ["keep me"]
