@@ -18,8 +18,9 @@ feature, a docs fix, an open product question, a migration, and one more feature
 that `triage` has something to actually judge and its `agent-ready` gate has to reject
 some of them.
 
-**The README command above is deliberately wrong** (issue #3): it installs neither `ruff`
-nor `pytest`, so a fresh clone cannot run the gate as documented. That is the fixture.
+**In the reset state, the README command above is deliberately wrong** (issue #3): it
+installs neither `ruff` nor `pytest`, so a fresh clone cannot run the gate as documented.
+That is the fixture; the PR for #3 fixes it, and `scripts/reset.sh` breaks it again.
 
 To run the plugin against it again from a clean slate:
 
