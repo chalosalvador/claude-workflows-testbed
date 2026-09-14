@@ -36,7 +36,7 @@ def test_remove_returns_false_for_an_unknown_task():
 
 def test_remove_takes_only_the_first_match():
     store = Store()
-    store.add("dup")
-    store.add("dup")
+    store.add("dup", tags=["first"])
+    store.add("dup", tags=["second"])
     assert store.remove("dup") is True
-    assert len(store.pending()) == 1
+    assert [t.tags for t in store.pending()] == [["second"]]
