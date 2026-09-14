@@ -18,9 +18,9 @@ feature, a docs fix, an open product question, a migration, and one more feature
 that `triage` has something to actually judge and its `agent-ready` gate has to reject
 some of them.
 
-**The install line above is the fixture.** `scripts/reset.sh` puts it back to
-`pip install -e . && pytest tests/ -q`, which installs neither `ruff` nor `pytest`, so a
-fresh clone of the reset repo cannot run the gate as documented.
+**The install line above is the fixture.** `scripts/reset.sh` puts back a broken version of
+it that installs neither `ruff` nor `pytest`, so a fresh clone of the reset repo cannot run
+the gate as documented.
 
 To run the plugin against it again from a clean slate:
 
